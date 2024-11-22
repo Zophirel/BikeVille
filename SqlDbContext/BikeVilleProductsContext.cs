@@ -23,7 +23,6 @@ public partial class BikeVilleProductsContext : DbContext
     public virtual DbSet<ProductModel> ProductModels { get; set; }
 
     public virtual DbSet<ProductModelProductDescription> ProductModelProductDescriptions { get; set; }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Product>(entity =>

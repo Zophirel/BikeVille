@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace BikeVille.Models.Customers;
+﻿namespace BikeVille.Models.Customers;
 
 public partial class SalesOrderHeader
 {

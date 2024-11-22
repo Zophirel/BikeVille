@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using BikeVille.Models.Products;
 using BikeVille.SqlDbContext;
 
-namespace BikeVille.Controllers
+namespace BikeVille.Controllers.Products
 {
     [Route("api/[controller]")]
     [ApiController]

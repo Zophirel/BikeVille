@@ -7,11 +7,13 @@ public partial class BikeVilleCustomersContext : DbContext
 {
     public BikeVilleCustomersContext()
     {
+
     }
 
     public BikeVilleCustomersContext(DbContextOptions<BikeVilleCustomersContext> options)
         : base(options)
     {
+        
     }
 
     public virtual DbSet<Address> Addresses { get; set; }
