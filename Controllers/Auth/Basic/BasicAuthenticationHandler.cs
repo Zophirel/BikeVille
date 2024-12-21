@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.RegularExpressions;
 
-namespace BikeVille.Controllers.Auth
+namespace BikeVille.Controllers.Auth.Basic
 {
     public class BasicAuthenticationHandler(IOptionsMonitor<AuthenticationSchemeOptions> options,
         ILoggerFactory logger, UrlEncoder url, ISystemClock clock, AuthService authService) : AuthenticationHandler<AuthenticationSchemeOptions>(options, logger, url, clock)

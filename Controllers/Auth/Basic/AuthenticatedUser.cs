@@ -1,6 +1,6 @@
 using System.Security.Principal;
 
-namespace BikeVille.Controllers.Auth
+namespace BikeVille.Controllers.Auth.Basic
 {
     public class AuthenticatedUser(string authType, bool isAuth, string name) : IIdentity
     {

@@ -2,11 +2,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BikeVille.Models.Customers;
 using BikeVille.SqlDbContext;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BikeVille.Controllers.Customers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+    
     public class AddressController(BikeVilleCustomersContext context) : ControllerBase
     {
         private readonly BikeVilleCustomersContext _context = context;

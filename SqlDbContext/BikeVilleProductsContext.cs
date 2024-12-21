@@ -14,6 +14,7 @@ public partial class BikeVilleProductsContext : DbContext
     {
     }
 
+    public DbSet<ProductView> ProductView { get; set; }
     public virtual DbSet<Product> Products { get; set; }
 
     public virtual DbSet<ProductCategory> ProductCategories { get; set; }
@@ -64,6 +65,15 @@ public partial class BikeVilleProductsContext : DbContext
                 .HasForeignKey(d => d.ProductModelId)
                 .HasConstraintName("FK_Product_ProductModel");
         });
+
+        modelBuilder.Entity<ProductView>(
+            eb =>
+            {
+                eb.HasNoKey();
+                eb.ToView("ProductList");
+                eb.Property(v => v.ProductId);
+            } 
+        );
 
         modelBuilder.Entity<ProductCategory>(entity =>
         {

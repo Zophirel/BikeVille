@@ -32,6 +32,13 @@ namespace BikeVille.Controllers.Products
             return product;
         }
 
+        // GET: api/ProductCategory
+        [HttpGet("view")]
+        public async Task<ActionResult<IEnumerable<ProductView>>> GetProductCategories()
+        {
+            return await _context.ProductView.ToListAsync();
+        }
+
         // PUT: api/Product/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

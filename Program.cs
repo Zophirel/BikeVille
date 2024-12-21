@@ -1,10 +1,14 @@
-using BikeVille.Controllers.Auth;
+using System.Text;
+using BikeVille.Controllers.Auth.Basic;
+using BikeVille.Controllers.Auth.Jwt;
 using BikeVille.Services;
 using BikeVille.SqlDbContext;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,6 +45,29 @@ builder.Services.AddAuthorizationBuilder()
             .RequireAuthenticatedUser().Build());
 
 builder.Services.AddScoped<AuthService>();
+
+JwtSettings jwtSettings = new();
+builder.Configuration.GetSection("JwtSettings").Bind(jwtSettings);
+_ = builder.Services.AddSingleton(jwtSettings);
+
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(opts =>
+    {
+        opts.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = jwtSettings.Issuer,
+            ValidAudience = jwtSettings.Audience,
+            RequireExpirationTime = true,
+            IssuerSigningKey =
+            new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(jwtSettings.SecretKey!))
+        };
+    });
 
 builder.Services.AddCors(
     opts => opts.AddPolicy("CorsPolicy", builder =>
